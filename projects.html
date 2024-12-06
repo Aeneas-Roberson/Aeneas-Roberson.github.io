@@ -12,6 +12,9 @@
             background-color: #f9f9f9;
             color: #333;
         }
+        h1, h2 {
+            color: #4CAF50;
+        }
         img {
             display: block;
             margin: 20px auto;
@@ -31,47 +34,83 @@
         ul li a:hover {
             text-decoration: underline;
         }
-        nav {
-            margin-bottom: 20px;
-        }
-        nav a {
-            text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Back to Home</a>
-    </nav>
+    <header>
+        <h1>CS Final Project</h1>
+    </header>
 
-    <h1>CS Final Project</h1>
+    <section>
+        <h2>Hypothesis</h2>
+        <ol>
+            <li>Is it profitable to bet on home teams, that are underdogs, to win the game outright?</li>
+            <li>Is it profitable to bet on home teams, that are underdogs, to win the game outright, if the home team was on a ‘bye’ the week before?</li>
+        </ol>
+    </section>
 
-    <h2>Analysis</h2>
-    <p>Here are the graphs for analysis:</p>
-    <h3>Home Underdogs Off Bye</h3>
-    <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/HomeUnderDogsOffBye.png" alt="Home Underdogs Off Bye">
-    
-    <h3>MMM Spread</h3>
-    <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/MMM_Spread.png" alt="MMM Spread Graph">
-    
-    <h3>Home Underdogs Value</h3>
-    <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/home_underdogsVALUE.png" alt="Home Underdogs Value">
-    
-    <h3>Wins vs Loss Graph</h3>
-    <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/WinsVLossGraph_cleaned.png" alt="Wins vs Loss Graph">
+    <section>
+        <h2>Where I Gathered My Data</h2>
+        <p>
+            I gathered my data from: <a href="https://collegefootballdata.com/exporter/lines?seasonType=regular" target="_blank">College Football Data Exporter</a>.
+        </p>
+        <p>
+            I queried it by year, which provided me with a .csv file of every gambling line of the regular season from that year.
+        </p>
+    </section>
 
-    <h2>Download SQL Queries</h2>
-    <ul>
-        <li><a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/cfb_underdogs_query.txt" download>Download CFB Underdogs Query</a></li>
-        <li><a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/home_underdogs.txt" download>Download Home Underdogs Query</a></li>
-        <li><a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/mean_spread.txt" download>Download Mean Spread Query</a></li>
-        <li><a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/unique_lines.txt" download>Download Unique Lines Query</a></li>
-        <li><a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/cfb_underdogs_bye_query.txt" download>Download CFB Underdogs Bye Query</a></li>
-    </ul>
+    <section>
+        <h2>Data Cleaning and Integrity</h2>
+        <p>
+            After combining every year into one database, I had a total of 33,780 rows of data. This felt like a lot of games for an ~11-year time span, so I checked for duplicates in my data. 
+            This revealed ~20,000 duplicate lines, as the data source logged betting lines for the same games from different providers (e.g., FanDuel, DraftKings, MGM, etc.).
+        </p>
+        <p>
+            I resolved this issue by creating a new table called <strong>unique_lines</strong>: 
+            <a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/unique_lines.txt" download>[unique_lines.sql]</a>.
+        </p>
+    </section>
+
+    <section>
+        <h2>Home Underdogs</h2>
+        <p>
+            I then created a table called <strong>home_underdogs</strong>: 
+            <a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/home_underdogs.txt" download>[home_underdogs.sql]</a>.
+        </p>
+        <p>
+            This table included every game where the formatted spread was "away_team -". This generated 3945 results:
+        </p>
+        <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/WinsVLossGraph_cleaned.png" alt="Wins vs Loss Graph">
+    </section>
+
+    <section>
+        <h2>Analyzing Spreads</h2>
+        <p>
+            I analyzed the mean, mode, and median spreads of home underdog winners: 
+            <a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/mean_spread.txt" download>[mean_spread.sql]</a>.
+        </p>
+        <ul>
+            <li><strong>Mean:</strong> 6.21</li>
+            <li><strong>Mode:</strong> 3</li>
+            <li><strong>Median:</strong> 5</li>
+        </ul>
+        <p>
+            This provided insights into profitable trends. I then created a query to find winners, losers, total games, Moneyline values, and profitability for spreads from 0.5–10.5:
+            <a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/cfb_underdogs_query.txt" download>[cfb_underdogs_query.sql]</a>.
+        </p>
+        <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/home_underdogsVALUE.png" alt="Home Underdogs Value Graph">
+    </section>
+
+    <section>
+        <h2>Effect of Bye Weeks</h2>
+        <p>
+            To test if teams coming off a bye week were more profitable, I ran the same test while cross-referencing team schedules: 
+            <a href="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/cfb_underdogs_bye_query.txt" download>[cfb_underdogs_bye_query.sql]</a>.
+        </p>
+        <img src="https://github.com/Aeneas-Roberson/Aeneas-Roberson.github.io/raw/main/HomeUnderDogsOffBye.png" alt="Home Underdogs Off Bye Graph">
+        <p>
+            The results were surprisingly underwhelming compared to the profitability of regular home underdogs.
+        </p>
+    </section>
 </body>
 </html>

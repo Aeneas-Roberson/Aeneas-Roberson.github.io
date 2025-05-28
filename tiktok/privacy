@@ -1,0 +1,26 @@
+📄 Privacy Policy (privacy.html or /privacy route)
+
+Effective Date: [Insert Date]
+
+This Privacy Policy describes how we collect, use, and protect your information when you use our TikTok posting service.
+
+1. Information Collected
+	•	TikTok access_token and open_id (only upon your explicit authorization)
+	•	No personal data beyond what TikTok shares during login
+
+2. Use of Information
+	•	To generate and post videos on your behalf using the TikTok Content Posting API
+	•	We do not access your messages, followers, or analytics data
+
+3. Storage & Security
+	•	Tokens are stored encrypted and used only for your posts
+	•	We do not sell or share your data
+
+4. Data Deletion
+You can revoke access anytime via your TikTok settings. We will delete all associated tokens within 24 hours.
+
+5. Changes
+We may update this policy. Continued use implies consent to the updated terms.
+
+6. Contact
+For privacy-related concerns, email: aivideos@email.com

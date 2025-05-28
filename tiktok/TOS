@@ -1,0 +1,23 @@
+📄 Terms of Service (terms.html or /terms route)
+
+Effective Date: [Insert Date]
+
+Welcome to our platform. By using our TikTok automation service (“the Service”), you agree to these Terms of Service.
+
+1. Description
+Our Service uses artificial intelligence to generate short stories, overlay narration on video, and publish content on TikTok via the Content Posting API.
+
+2. User Responsibility
+By authorizing the Service via TikTok Login, you grant us access to upload content to your TikTok account. You are responsible for reviewing the content before it is posted.
+
+3. Content Ownership
+All AI-generated content remains your property. You may delete any posted content at any time through your TikTok account.
+
+4. API Compliance
+We comply with TikTok’s Developer Terms and use your access token only for authorized posting. Tokens are stored securely and not shared.
+
+5. Termination
+You may revoke access at any time via your TikTok settings. We reserve the right to discontinue access for violations of these terms.
+
+6. Contact
+For questions, contact: aivideos@email.com

@@ -6,12 +6,14 @@
   <title>Facebook Login Integration</title>
 </head>
 <body>
-  <h1>Facebook Login Setup</h1>
-  <fb:login-button 
-    scope="pages_show_list,instagram_basic,instagram_content_publish,pages_read_engagement"
-    onlogin="checkLoginState();">
-  </fb:login-button>
-  <button onclick="loginWithFacebook()">Login with Facebook</button>
+  <div style="max-width: 600px; margin: 100px auto; text-align: center; font-family: Arial, sans-serif;">
+    <h1>Facebook Login Setup</h1>
+    <p>This page lets you securely log in with Facebook to grant access to your Instagram Business account. Once logged in, an access token is printed in the console for use in your automation scripts.</p>
+    <fb:login-button 
+      scope="pages_show_list,instagram_basic,instagram_content_publish,pages_read_engagement"
+      onlogin="checkLoginState();">
+    </fb:login-button>
+  </div>
 
   <script>
     window.fbAsyncInit = function() {
@@ -52,19 +54,6 @@
     function checkLoginState() {
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
-      });
-    }
-
-    function loginWithFacebook() {
-      FB.login(function(response) {
-        if (response.authResponse) {
-          console.log('Access Token:', response.authResponse.accessToken);
-          alert("Access token copied to console");
-        } else {
-          alert("Login failed");
-        }
-      }, {
-        scope: 'pages_show_list,instagram_basic,instagram_content_publish,pages_read_engagement'
       });
     }
   </script>
